@@ -1,22 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
-  <dashboard-extension id="com.extensions.exportdata" extension-version="2.3.1">
-    <default-locale>en_US</default-locale>
-    <name resource-id="name"/>
-    <description>Export Summary Data to Excel</description>
-    <author name="Siva" email="urssivakumar@outlook.com" organization="Astraverse Inc"/>
-    <min-api-version>1.0</min-api-version>
-    <source-location>
-      <url>https://Siva-CodeFirst.github.io/tableau-extension-export/index.htmlo</url>
-    </source-location>
-    <icon>iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAvsoSUAAAACVBMVEUAAAAAAAAAAACDY+nAAAAAA3RSTlMA/4CE6rqMAAAAoUlEQVR4Ae3PoRUCMQDAUN65DnIj9R6SUViCfcFGpXXwSHzEv1VV/UbzU0NDQ8NqDQ0NDQ0NDQ0NDQ2viS4dTg53HQaHhw4Hh+cmggRHkOAIEhxBgiNIcAQJjiDBESQ4ggRHkOAIEHYQJDiCBEeQ4AgSHEGCI0hwBAirCBIcQYIjSHAECd4AYQ1BgiNI8E4SvEGCd2wQqmpKDQ3/NFRVfUlvNddxSLdUkP4AAAAASUVORK5CYII=</icon>
-    <context-menu>
-      <configure-context-menu-item />
-    </context-menu>
-  </dashboard-extension>
-  <resources>
-    <resource id="name">
-      <text locale="en_US">Export Data</text>
-    </resource>
-  </resources>
-</manifest>
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest xmlns="http://tableau.com/schema/extension_manifest">
+  <!-- Display name shown in Tableau’s “My Extensions” dialog -->
+  <Name>Export Data</Name>
+
+  <!-- A short description for users -->
+  <Description>Export filtered dashboard data as CSV</Description>
+
+  <Author>
+    <Name>Siva Kumar</Name>
+    <Email>urssivakumar@outlook.com</Email>
+  </Author>
+
+  <!-- Link to your GitHub Pages home for this extension -->
+  <HomepageUrl>https://siva-codefirst.github.io/tableau-extension-export/</HomepageUrl>
+
+  <SourceLocation>
+    <!-- The HTML page that loads your JS code -->
+    <Url>https://siva-codefirst.github.io/tableau-extension-export/index.html</Url>
+  </SourceLocation>
+
+  <!-- Optional: point to a 64×64 icon for the extension -->
+  <!--
+  <IconUrl>https://siva-codefirst.github.io/tableau-extension-export/icon.png</IconUrl>
+  -->
+
+  <!-- Versioning -->
+  <Version>1.0</Version>
+
+  <!-- Only needs read access to the dashboard data -->
+  <Permissions>
+    <Scope>Read</Scope>
+  </Permissions>
+</ExtensionManifest>

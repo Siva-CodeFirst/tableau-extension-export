@@ -200,6 +200,78 @@ const revalidateMeta = (existing) => new Promise((resolve, reject) => {
   });
 });
 
+// Main entry: exports one CSV per selected sheet
+const exportToCsv = (meta, filenameBase) => new Promise((resolve, reject) => {
+  const fileBase = filenameBase && filenameBase.length
+    ? filenameBase
+    : "export";
+  buildCsvBlobs(meta)
+    .then(blobs => {
+      blobs.forEach(({ sheetName, blob }) => {
+        // e.g. export_Sales.csv, export_Profit.csv
+        saveAs(blob, `${fileBase}_${sheetName}.csv`);
+      });
+      resolve();
+    })
+    .catch(reject);
+});
+
+// Builds an array of { sheetName, blob } promises
+const buildCsvBlobs = (meta) => new Promise((resolve, reject) => {
+  const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+  // Filter only selected sheets
+  const selections = meta.filter(m => m && m.selected);
+  const total = selections.length;
+  let done = 0;
+  const results = [];
+
+  if (total === 0) {
+    return resolve([]);
+  }
+
+  selections.forEach(m => {
+    // Clean up sheet name for filename
+    const sheetName = (m.changeName || m.sheetName)
+      .replace(/[*?/\\[\]]/g, '');
+    const worksheet = worksheets.find(w => w.name === m.sheetName);
+
+    worksheet.getSummaryDataAsync({ ignoreSelection: true })
+      .then(data => {
+        // Determine output columns & header order
+        const colsMeta = m.columns.filter(c => c.selected);
+        const headerOrder = colsMeta.map(c => c.changeName || c.name);
+
+        return decodeDataset(data.columns, data.data)
+          .then(rows => {
+            // Build CSV content
+            const csvLines = [
+              headerOrder.join(","),                          // header row
+              ...rows.map(row =>
+                headerOrder
+                  .map(h => `"${(row[h] ?? "")
+                    .toString()
+                    .replace(/"/g, '""')}"`)
+                  .join(",")
+              )
+            ];
+            const csvText = csvLines.join("\n");
+            const blob = new Blob([csvText], {
+              type: "text/csv;charset=utf-8;"
+            });
+            results.push({ sheetName, blob });
+          });
+      })
+      .then(() => {
+        done++;
+        if (done === total) {
+          resolve(results);
+        }
+      })
+      .catch(reject);
+  });
+});
+
+
 const exportToExcel = (meta, env, filename) => new Promise((resolve, reject) => {
   let xlsFile = "export.xlsx";
   if (filename && filename.length > 0) {
@@ -213,7 +285,6 @@ const exportToExcel = (meta, env, filename) => new Promise((resolve, reject) => 
     resolve();
   });
 });
-
 
 
 // krisd: move excel creation to caller (to support extra export to methodss)
@@ -345,5 +416,6 @@ export {
   revalidateMeta,
   saveSettings,
   setSettings,
-  exportToExcel,
+  exportToCsv,
+  //exportToExcel,
 }

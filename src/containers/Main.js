@@ -14,7 +14,7 @@ class Main extends Component {
       meta : undefined,
       metaVersion: 2,
       button: {
-        label : 'Export All',
+        label : 'Export Data',
         style: 'outline',
         disabled : true
       },
@@ -77,7 +77,7 @@ class Main extends Component {
       meta : undefined,
       metaVersion: 2,
       button: {
-        label : 'Export All',
+        label : 'Export Data',
         style: 'outline',
         disabled : true
       },

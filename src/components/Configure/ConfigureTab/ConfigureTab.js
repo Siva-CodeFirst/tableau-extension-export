@@ -22,7 +22,7 @@ function ConfigureTab(props) {
       props.updateLabel(e.target.value)
     },
     onClear: () => {
-      props.updateLabel('Export All');
+      props.updateLabel('Export Data');
     },
     placeholder: 'Button Label',
     style: { width: 400 },

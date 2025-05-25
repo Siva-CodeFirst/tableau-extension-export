@@ -41,7 +41,7 @@ function Extension (props) {
           .then(meta => {
             props.updateMeta(meta);
             setSettings('sheets', meta);
-            setSettings('label', 'Export All');
+            setSettings('label', 'Export Data');
             return saveSettings();
           })
           .then(meta => configure(meta));

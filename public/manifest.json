@@ -1,6 +1,6 @@
 {
   "short_name": "Export Data",
-  "name": "Export Summary data from your Tableau dashboards into one single XLSX file",
+  "name": "Export Summary data from your Tableau dashboards into one single CSV file",
   "icons": [
     {
       "src": "favicon.ico",

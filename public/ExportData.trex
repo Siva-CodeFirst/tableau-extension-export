@@ -3,8 +3,8 @@
   <dashboard-extension id="com.extensions.exportdata" extension-version="2.3.1">
     <default-locale>en_US</default-locale>
     <name resource-id="name"/>
-    <description>Export Summary Data to Excel</description>
-    <author name="Siva" email="urssivakumar@outlook.com" />
+    <description>Export Summary Data to CSV</description>
+ <author name="Siva Kollapur" email="urssivakumar@outlook.com" organization="The Astraverse Corp" website="https://siva-codefirst.github.io"/>
     <min-api-version>1.0</min-api-version>
     <source-location>
  <url>https://Siva-CodeFirst.github.io/tableau-extension-export/index.htmlo</url>

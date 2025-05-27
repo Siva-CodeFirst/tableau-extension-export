@@ -21,7 +21,9 @@
     "build": "react-scripts build",
     "release": "react-scripts build && copyfiles -f ./build/index.html ./build/configure && copyfiles -f ./build/index.html ./build/desktopexport",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "minify": "terser public/index.js --compress --mangle --output public/js/tableau.extensions.1.0.0.min.js",
+    "build:min": "terser src/index.js --ecma 2015 --compress --mangle --output public/js/tableau.extensions.1.0.0.min.js"
   },
   "eslintConfig": {
     "extends": "react-app"

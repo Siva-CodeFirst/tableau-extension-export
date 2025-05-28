@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ExtensionManifest xmlns="http://tableau.com/xml/extension_manifest">
+  <Name>CSV Export Extension</Name>
+  <Description>Exports Tableau data to a CSV file</Description>
+  <Author>
+    <Name>Siva</Name>
+    <Email>urssivakumar@outlook.com</Email>
+  </Author>
+  <Version>1.0.0</Version>
+  <MinimumApiVersion>1.1</MinimumApiVersion>
+  <ExtensionUrl>https://siva-codefirst.github.io/tableau-extension-export/index.html</ExtensionUrl>
+  <IconUrl>https://siva-codefirst.github.io/tableau-extension-export/icon.svg</IconUrl>
+
+  <Permissions>
+    <Permission>Read</Permission>
+  </Permissions>
+</ExtensionManifest>

@@ -4,7 +4,7 @@
     <default-locale>en_US</default-locale>
 
     <name resource-id="name"/>
-    <description>Export Summary Data to Excel</description>
+    <description>Export Summary Data to CSV</description>
 
     <author 
       name="Siva Kumar" 
@@ -19,7 +19,7 @@
     </source-location>
 
     <icon>
-      <url>https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/CSV_Icon.png/64px-CSV_Icon.png</url>
+      <url>https://siva-codefirst.github.io/tableau-extension-export/radio.png</url>
     </icon>
 
     <context-menu>

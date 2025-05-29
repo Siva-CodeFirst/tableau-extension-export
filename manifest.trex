@@ -1,21 +1,35 @@
-<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+<?xml version="1.0" encoding="UTF-8"?>
+<extension xmlns="http://tableau.com/xml/extension_manifest" manifest-version="0.1">
   <dashboard-extension id="exportall" extension-version="1.0.0">
     <default-locale>en_US</default-locale>
+
     <name resource-id="name"/>
     <description>Export Summary Data to Excel</description>
-    <author name="Siva Kumar" email="urssivakumar@outlook.com" organization="astraverse" website=""/>
+
+    <author 
+      name="Siva Kumar" 
+      email="urssivakumar@outlook.com" 
+      organization="Astraverse" 
+      website=""/>
+
     <min-api-version>1.0</min-api-version>
-  <source-location>
-    <Url>https://siva-codefirst.github.io/tableau-extension-export/index.html</Url>
-  </source-location>
-    <icon>https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/CSV_Icon.png/64px-CSV_Icon.png</icon>
+
+    <source-location>
+      <url>https://siva-codefirst.github.io/tableau-extension-export/index.html</url>
+    </source-location>
+
+    <icon>
+      <url>https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/CSV_Icon.png/64px-CSV_Icon.png</url>
+    </icon>
+
     <context-menu>
       <configure-context-menu-item />
     </context-menu>
   </dashboard-extension>
+
   <resources>
     <resource id="name">
       <text locale="en_US">Export Data</text>
     </resource>
   </resources>
-</manifest>
+</extension>

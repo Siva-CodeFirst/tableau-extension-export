@@ -1,16 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ExtensionManifest xmlns="http://www.tableau.com/xml/extension_manifest">
-  <Name>CSV Export Extension</Name>
-  <Description>Exports Tableau data to a CSV file</Description>
-  <Author>
-    <Name>Siva Kumar</Name>
-    <Email>urssivakumar@outlook.com</Email>
-  </Author>
-  <Version>1.0.0</Version>
-  <MinimumApiVersion>1.1</MinimumApiVersion>
-  <ExtensionUrl>https://siva-codefirst.github.io/tableau-extension-export/index.html</ExtensionUrl>
-  <IconUrl>https://siva-codefirst.github.io/tableau-extension-export/icon.png</IconUrl>
-  <Permissions>
-    <Permission>Read</Permission>
-  </Permissions>
-</ExtensionManifest>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="exportall" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Export Summary Data to Excel</description>
+    <author name="Siva Kumar" email="urssivakumar@outlook.com" organization="astraverse" website=""/>
+    <min-api-version>1.0</min-api-version>
+  <source-location>
+    <Url>https://siva-codefirst.github.io/tableau-extension-export/index.html</Url>
+  </source-location>
+    <icon>https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/CSV_Icon.png/64px-CSV_Icon.png</icon>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">Export Data</text>
+    </resource>
+  </resources>
+</manifest>

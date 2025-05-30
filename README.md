@@ -1,4 +1,4 @@
- # TESTing Export All Tableau Extension
+ # TESTExport Test Export All Tableau Extension
 
 ## Introduction
 No matter how much you try to convince them, there will always be some users who want to reduce your beautiful Tableau charts to a table of numbers in Excel. So if they're going to do it anyway, you may as well give them a simple, controlled way, generating one Excel workbook and not a bunch of CSVs.

@@ -338,12 +338,77 @@ const decodeRow = (columns, row) => new Promise((resolve, reject) => {
   resolve(meta);
 });
 
+const exportToCsv = (meta, env, filename) => new Promise((resolve, reject) => {
+  let csvFile = "export.csv";
+  if (filename && filename.length > 0) {
+    csvFile = filename + ".csv";
+  }
 
+  buildCsvBlob(meta).then(csvText => {
+    const blob = new Blob([csvText], { type: "text/csv;charset=utf-8;" });
+    saveAs(blob, csvFile);
+    resolve();
+  }).catch(reject);
+});
+
+const buildCsvBlob = (meta) => new Promise((resolve, reject) => {
+  const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+  let csvAll = "";
+  let totalSheets = 0;
+  let processedSheets = 0;
+
+  for (let i = 0; i < meta.length; i++) {
+    if (meta[i] && meta[i].selected) {
+      totalSheets++;
+      const tabName = (meta[i].changeName || meta[i].sheetName).replace(/[*?/\\[\]]/gi, '');
+      const sheet = worksheets.find(s => s.name === meta[i].sheetName);
+      const columnMeta = meta[i].columns;
+
+      sheet.getSummaryDataAsync({ ignoreSelection: true }).then(data => {
+        const columns = data.columns;
+        const rows = data.data;
+
+        // Prepare header row
+        let headers = [];
+        columnMeta.forEach(col => {
+          if (col.selected) {
+            headers.push(`"${col.changeName || col.name}"`);
+          }
+        });
+
+        // Prepare data rows
+        const csvRows = rows.map(row => {
+          return columnMeta.filter(col => col.selected).map(colMeta => {
+            const column = columns.find(c => c.fieldName === colMeta.name);
+            const cell = row[columns.indexOf(column)];
+            const val = (cell.formattedValue || "").replace(/"/g, '""'); // escape quotes
+            return `"${val}"`;
+          }).join(",");
+        });
+
+        // Combine
+        csvAll += `\n\nSheet: ${tabName}\n`;
+        csvAll += headers.join(",") + "\n";
+        csvAll += csvRows.join("\n");
+
+        processedSheets++;
+        if (processedSheets === totalSheets) {
+          resolve(csvAll);
+        }
+      }).catch(reject);
+    }
+  }
+
+  if (totalSheets === 0) {
+    resolve("No sheets selected.");
+  }
+});
 
 export {
   initializeMeta,
   revalidateMeta,
   saveSettings,
   setSettings,
-  exportToExcel,
+  exportToCsv,
+  //exportToExcel,
 }
